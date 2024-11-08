@@ -1,28 +1,33 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    int N, M;
-    scanf("%d %d", &N, &M);
+    char str1[101], str2[101], str3[101];
+    scanf("%s", str1);
+    scanf("%s", str2);
+    scanf("%s", str3);
     
-    int matrix[N][M];
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < M; j++) {
-            scanf("%d", &matrix[i][j]);
+    int length = strlen(str1);
+    int total_operations = 0;
+    
+    
+    for (int i = 0; i < length; i++) {
+        char a = str1[i];
+        char b = str2[i];
+        char c = str3[i];
+        
+        
+        if (a == b && b == c) {
+            continue;  
+        } else if (a == b || b == c || a == c) {
+            total_operations += 1;  
+        } else {
+            total_operations += 2;  
         }
-    }for (int i = 0; i < N; i++) {
-        int temp = matrix[i][0];
-        matrix[i][0] = matrix[i][M-1];
-        matrix[i][M-1] = temp;
-    }for (int j = 0; j < M; j++) {
-        int temp = matrix[0][j];
-        matrix[0][j] = matrix[N-1][j];
-        matrix[N-1][j] = temp;
-    }for (int i = 0; i < N; i++) {
-        for (int j = 0; j < M; j++) {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
     }
-
+    
+    
+    printf("%d\n", total_operations);
+    
     return 0;
 }
